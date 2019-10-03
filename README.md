@@ -1,4 +1,4 @@
-# IntroR 
+# Introduction to R 
 
 This repository contains material for the Introduction to R sessions. The class is taught to first year PhD researchers at the SPS Department of the EUI who are enrolled in "Introduction to Quantitative Methods".
 
