@@ -2,11 +2,7 @@
 ---
 title: "Basic of the R lenguage"
 output:
-  html_document:
-    df_print: paged
   html_notebook: default
-  pdf_document: default
-  word_document: default
 ---
 
 ```{r setup, include=FALSE, echo=FALSE}
