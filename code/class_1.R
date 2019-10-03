@@ -1,6 +1,9 @@
 
+##################### THE R LENGUAGE #####################
 
-################# Main types of cbjects #################
+
+################## Main types of objects #################
+
 
 greetings <- "Hello world" 
 
@@ -12,14 +15,23 @@ a_constant <- 3
 
 # Vectors 
 
+u <- c(1,2,3,4,5,6)
 
-y <- c(1,2,3,4,5,6)
+v <- rep(1,6)
 
-w <- sample(y) 
+w <- seq(from=1,to=3.5,by=0.5)
+
+x <- 6:11
+
+
+# You can combine these. E.g:
+
+uu <- rep(u,2)
+
+uv <- c(u,v)
 
 some_letters <- c("A","B","C","D")
 
-# what is sample? Just type ?sample and you will see
 
 
 # Matrices 
@@ -66,6 +78,48 @@ root        <- a_constant^(1/3)
 natlog      <- log(a_constant)
 
 
+# Vector operations
+
+
+y <- c(3,1,2,4,6,5)
+x <- c(5,2,6,5,7,1)
+
+
+# quantities 
+n <- length(y)
+
+sum_y <- sum(y)
+
+min_y <- min(y)
+
+max_y <- max(y)
+
+range_y <- range(y)
+
+rank_y <- rank(y)
+
+sort_y <- sort(y)
+
+add_vectors  <- y + x
+
+add_vector_const <- y + 1
+
+lincom_vector <- 2*x + y
+
+
+
+
+
+# all math operations on vectors and matrices are interpreted as "element wise" operations. Example:
+
+x/y
+(y+x)/n
+
+# %*% is vector/matrix multiplication
+
+dot_product <- t(x)%*%y
+
+outer_product <- x%*%t(y)
 
 # Some linear algebra (matrix operations)
 
@@ -92,15 +146,51 @@ matrix_mult_2 <- t(M_2)%*%M_2
 # isTRUE(x)	test if X is TRUE
 
 
+
 y>3
 
 (y>3)*1
+
+u==v
+
+u!=v
+
+
+# subseting
+
+y[1]
+
+y[c(1,3)]
+
+y[-c(1,3)]
+
+y[3:length(y)]
+
+names(y) <- paste("Name", 1:length(y), sep = "")
+y
+y[c("Name1","Name5")]
+
 
 y[which(y<2 | y>=5)]
 
 y[y<2 | y>=5]
 
 
+# assignment to subset
+
+y[y<2 | y>=5] <- 0
+
+
+
+# Missing values 
+
+
+y <- c(3,1,NA,4,6,NA)
+
+is.na(y)
+
+
+y[is.na(y)==TRUE] <- 1
 
 ####################### Functions ####################
 
