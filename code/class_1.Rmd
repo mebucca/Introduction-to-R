@@ -433,7 +433,7 @@ my_function(1:50)
 ```
 <br>
 
-####  While loops
+###  While loops
 `While loops` are used to loop until a specific condition is met. Example
 
 ```{r}
@@ -454,13 +454,22 @@ trace
 <br>
 
 
-## Plot 
+## Plots 
+
+Here is just introduce the two most basic types of plots, namely histograms and scatterplots.
 
 ```{r}
 
 x <- 1:50
 y <- my_function(1:50)
 
+
+# Histogram
+
+hist(y, col="blue", main="Distribution of y")
+
+
+# Scatterplot
 
 plot(x,y, col="red", ylab="log(x + x^2/2 + ... + x^5/5", main="My first function!")
 ```
