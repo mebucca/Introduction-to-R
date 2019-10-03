@@ -39,7 +39,7 @@ pos_inf <- 1/0; pos_inf
 
 # Logical vectors
 
-a_truth <- TRUE
+a_truth <- TRUE; a_truth
 
 ```
 <br>
@@ -63,7 +63,7 @@ uv <- c(u,v); uv
 
 some_letters  <- c("a","b")
 more_letters  <- c("c","d") 
-all_letters   <- c(some_letters,more_letters); all_letters
+abcd  <- c(some_letters,more_letters); abcd
 
 ```
 <br>
@@ -73,20 +73,20 @@ There are many other more convenient ways to create vectors. For example:
 ```{r}
 
 # Repeat value 1, six times
-w <- rep(1,6)
+w <- rep(1,6); w
 
 # Sequence starting in 1, ending in 2, spaced by 0.5
-x <- seq(from=1,to=3.5,by=0.5)
+x <- seq(from=1,to=3.5,by=0.5); x
 
 # Sequence of length 6, starting in 10 and ending in 10, spacing authomatically determined.
-y <- seq(length=6, from=10, 100)
+y <- seq(length=6, from=10, 100); y
 
-# Shortcut for seq(6,1,1)
-z <- 6:11
+# Shortcut for seq(6,11,1)
+z <- 6:11; z
 
 # You can combine these functions at will. Example: create a vector that repeats x twice
 
-xx <- rep(x,2)
+xx <- rep(x,2); xx
 
 ```
 <br>
@@ -102,18 +102,17 @@ In R matrices are an extension of vectors. They are not a separate type of objec
 
 some_numbers <- seq(1:100)
 
-a_matrix <- matrix(some_numbers,  nrow = 2, ncol = 2)
-another_matrix <- matrix(some_numbers,  nrow = 5)
+a_matrix <- matrix(some_numbers,  nrow = 2, ncol = 2); a_matrix
+another_matrix <- matrix(some_numbers,  nrow = 5); another_matrix
 
 # Binding vectors, eithers by rows or by columns
 
-matrix_1 <- cbind(y,w)
-matrix_2 <- rbind(y,w)
+matrix_1 <- cbind(y,x); matrix_1
+matrix_2 <- rbind(y,x); matrix_2
 
 # Other special cases: a 10 by 10 identity matrix 
 
-ones <- rep(10); ones 
-identity <- diag(ones); identity
+identity <- diag(10); identity
 
 ```
 <br>
@@ -125,56 +124,69 @@ A data frame is a very important data type in R. It’ the structure for most da
 
 
 
-
 ```{r}
 
-df_1 <- data.frame(var1 = y, var2 = w)
+# create a data frame
+mydata <- data.frame(id = letters[1:10], x = 1:10, y = 11:20); mydata
 
-df_1$var1
+# access variables in a data frame
+mydata$x
+
+# assign a new element to a data frame
+
+mydata$z <- mydata$x + mydata$y; mydata
+
 ```
 <br>
 
 
-# Lists
+### Lists
 
-Lists are sometimes called generic vectors, because the elements of a list can by of any type of R object, even lists containing further lists. This property makes them fundamentally different from atomic vectors.
-
+R lists work as containers. They can contain any type of data, of any lengh. A list can even contain other lists.
 
 ```{r}
 
-my_list <- list(myvector=some_letters, mymatrix=M_2, mydf=df_1)
+my_list <- list(myvector=letters[1:10], mymatrix=matrix(1:100,nrow=5), mydf=mydata); my_list
 
 my_list$mymatrix 
 ```
 <br>
 
 
-# Converting objects
+### Converting objects
+
+Object of one type can be converted into objects of a different type using the functions of the type `as.___()`. Example:
 
 ```{r,error=TRUE}
 
-df_2 <- as.data.frame(M_1)
+# matrix to data.frame
+df_2 <- as.data.frame(matrix_2)
 names(df_2) <- c("var1","var2")
 
+# character to numeric
 as.numeric("3") + 1
 
+# numeric to character
 as.character(3)
 ```
 <br>
 
-####################### Operations ####################
+## Operations 
 
 
-# Basic operations with text
+### Basic operations with text
 
 ```{r}
 
-greetings <- paste("Hello","Word",sep=" ")
+greetings <- paste("Hello","Word",sep=" "); greetings
+
+five_letters <- paste(c("a","b","c","d"), collapse="+"); five_letters
+
 ```
 <br>
 
 
-# Arithmetic 
+### Arithmetic 
 
 ```{r}
 
@@ -185,80 +197,105 @@ ratio       <- 1/2
 power       <- 1^3
 root        <- 1^(1/3)
 natlog      <- log(1)
+rounded     <- round(root,1)
 ```
 <br>
 
-# Vector operations
+### Computing quantities of interest from vectors. 
+
+For this example we will generate two vectors using a random number generator. In each case we are going to draw a sample of 20 values from a [uniforme distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)) between 0 and 100. 
 
 ```{r}
 
-y <- c(3,1,2,4,6,5)
-x <- c(5,2,6,5,7,1)
+x <- round(runif(20,0,100),0)
+y <- round(runif(20,0,100),0); y
 
+# We can compute many quantities of interest. Here some examples
 
-# quantities 
-n <- length(y)
+# number of rows
+n <- length(y); n
 
-sum_y <- sum(y)
+# sum of entries
+sum_y <- sum(y); sum_y
 
-min_y <- min(y)
+# value of smallest entry
+min_y <- min(y); min_y
 
+# position of smallest entry
+index_min_y <- which.min(y); index_min_y
+
+# value of largest entry
 max_y <- max(y)
 
-range_y <- range(y)
+# position of largest entry
+index_max_y <- which.max(y)
 
-rank_y <- rank(y)
+# Returns the a ranking of values
+rank_y <- rank(y); rank_y
 
-sort_y <- sort(y)
+# Returns a vector of sorted values
+sort_y <- sort(y); sort_y
 
-add_vectors  <- y + x
-
-add_vector_const <- y + 1
-
-lincom_vector <- 2*x + y
 ```
 <br>
 
 
+### Vector operations
 
-
-# all math operations on vectors and matrices are interpreted as "element wise" operations. Example:
+You can do mathematical manipular of vectors and matrices as long as the dimensions are right.
+All arithmetic operations on vectors and matrices are interpreted as "element wise" operations. For vector/matrix multiplication (i.e. [dot products](https://en.wikipedia.org/wiki/Dot_product), [outer products](https://en.wikipedia.org/wiki/Outer_product), [matrix multiplication](https://en.wikipedia.org/wiki/Matrix_multiplication)) you need to use `%*%` instead of `*`. Example:
 
 ```{r}
 
-x/y
-(y+x)/n
+
+# 2 vectors of same dimensions
+x <- round(runif(20,0,100),0)
+y <- round(runif(20,0,100),0)
+
+# 2 matrices of same dimensions
+
+A <- matrix(round(runif(100,0,100),0), nrow=10)
+B <- matrix(round(runif(100,0,100),0), nrow=10); B
+
+
+# Linear combination of vectors
+
+lincom_vectors <- 2*x + y; lincom_vectors 
+
+
+# Element wise operations
+
+x_times_y <- x*y; x_times_y
+
+x_divided_y <- x/y; x_divided_y
+
+A_times_B <- A*B; A_times_B
+
+A_divided_B <- A/B; A_divided_B
+
+
+#  vector multiplication
+
+dot_product <- t(x)%*%y; dot_product 
+
+outer_product <- x%*%t(y); outer_product
+
+# Matrix multiplication 
+
+AB <- A%*%B; AB
+BA <- B%*%A; BA
+
 ```
 <br>
 
+## Logical operations
 
-# %*% is vector/matrix multiplication
+Logical operators evaluate of truth value of an statement. They return a decision in terms of TRUE or FALSE.
+
 
 ```{r}
 
-dot_product <- t(x)%*%y
-
-outer_product <- x%*%t(y)
-```
-<br>
-
-# Some linear algebra (matrix operations)
-
-
-```{r}
-
-transpose   <- t(M_2)
-elementwise <- M_2*M_2
-
-matrix_mult_1 <- M_2%*%t(M_2)
-matrix_mult_2 <- t(M_2)%*%M_2
-```
-<br>
-
-# Logic operations
-
-
-# <	less than
+# The following are the main logical operators:# <	less than
 # <=	less than or equal to
 # >	greater than
 # >=	greater than or equal to
@@ -269,73 +306,85 @@ matrix_mult_2 <- t(M_2)%*%M_2
 # x & y	x AND y
 # isTRUE(x)	test if X is TRUE
 
+#These operators act on raw, logical and number-like vectors.
 
-```{r}
+y; y>20
 
-y>3
+(y>20)*1
 
-(y>3)*1
+round(y,0)==round(x,0)
 
-u==v
+y!=x
 
-u!=v
 ```
 <br>
 
-# subseting
+### Subseting
+
+There are many methods to access a subset of data, be it a vector, matrix, data frame or list.
 
 ```{r,error=TRUE}
+
+# Indexing a vector
+
 y[1]
 y(1)
 
 y[c(1,3)]
+y[3:length(y)]
+
+# Negative indexing in vectos
 
 y[-c(1,3)]
 
-y[3:length(y)]
+# Indexing by names
 
 names(y) <- paste("Name", 1:length(y), sep = "")
 y
-y[c("Name1","Name5")]
+y[c("Name1","Name5","Name12")]
 
+# Indexing in matrices
 
 M_2[2,5]
 M_2[,5]
 M_2[1,]
 
 
+# Subseting using logical conditions
 
 y[which(y<2 | y>=5)]
 
 y[y<2 | y>=5]
-```
-<br>
 
-
-# assignment to subset
-
-```{r}
+# Assign and change values  using logic operators
 
 y[y<2 | y>=5] <- 0
+
 ```
 <br>
 
 
-# Missing values 
+## Missing values 
+
+In R, missing values are represented by the symbol NA (not available). Impossible values (e.g., dividing by zero) are represented by the symbol NaN (not a number). 
 
 ```{r}
 
+# Data with missing values
 y <- c(3,1,NA,4,6,NA)
 
+# Return logical vectors
 is.na(y)
 
-
+# Replacing a missing value
 y[is.na(y)==TRUE] <- 1
 
 ```
 <br>
 
-####################### Functions ####################
+## Functions 
+
+One of the great strengths of R is the user's ability to add functions. In fact, many of the functions in R are actually functions of functions. An example of a function is given below.
 
 ```{r}
 
@@ -344,17 +393,23 @@ my_function <- function(x) {
 		return(fx)
 	}
 
-
 my_function(1)
 my_function(2)
 ```
 <br>
 
 
-####################### Loops  ####################
+## Loops
+
+Loops are used in programming to repeat a specific block of code. 
+
+### For loops
+
+A `for loop` is used to iterate over a list of values (a vectors). Example
 
 ```{r}
 
+# For loop on list of characters
 list_words <- c("Welcome", "to", "the", "Introduction","to","R")
 
 for (i in list_words) {
@@ -366,6 +421,7 @@ for (i in list_words) {
 
 ```{r}
 
+# For loop on list of numbers
 for (i in 1:50) {
 	r <- my_function(i)
 	print(r) 
@@ -380,12 +436,33 @@ my_function(1:50)
 
 ```
 <br>
-####################### Plot  ####################
+
+####  While loops
+`While loops` are used to loop until a specific condition is met. Example
+
+```{r}
+
+# start on value i=1
+i=1
+trace <- NULL
+
+# redefine i such i equals i + function(i). Stop when i take on value 100 or more.
+
+while (i < 100) {
+  trace <- rbind(trace,c(i,i + my_function(i)))
+	i = i + my_function(i)
+}
+
+trace
+```
+<br>
+
+
+## Plot 
 
 ```{r}
 
 x <- 1:50
-x <- as.matrix(1:50)
 y <- my_function(1:50)
 
 
