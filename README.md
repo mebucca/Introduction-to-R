@@ -17,7 +17,7 @@ Because of time constraints, I will not be covering how to use R and SublimeText
 
 ## Notes
 
-The material for the class consist of two things:
+The material for the class consists of two things:
 
 - A tutorial with the [basics of the R lenguage](https://mebucca.github.io/IntroR/code/class_1.nb.html)
 
