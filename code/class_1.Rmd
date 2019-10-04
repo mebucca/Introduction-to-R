@@ -21,6 +21,7 @@ Here are some vectors (length one) of different classes:
 ```{r}
 
 # Character
+
 a_caracther <- "Hello"
 a_caracther
 class(a_caracther)
@@ -145,7 +146,8 @@ R lists work as containers. They can contain any type of data, of any lengh. A l
 
 my_list <- list(myvector=letters[1:10], mymatrix=matrix(1:100,nrow=5), mydf=mydata); my_list
 
-my_list$mymatrix 
+my_list$myvector
+
 ```
 <br>
 
@@ -157,12 +159,12 @@ Object of one type can be converted into objects of a different type using the f
 ```{r,error=TRUE}
 
 # matrix to data.frame
-df_2 <- as.data.frame(matrix_2)
+df_2 <- as.data.frame(matrix_1)
 names(df_2) <- c("var1","var2")
 
 # character to numeric
-as.numeric("3") + 1
-
+"as.numeric("3") + 1
+"3
 # numeric to character
 as.character(3)
 ```
@@ -342,9 +344,9 @@ y[c("Name1","Name5","Name12")]
 
 # Indexing in matrices
 
-M_2[2,5]
-M_2[,5]
-M_2[1,]
+matrix_2[2,5]
+matrix_2[,5]
+matrix_2[1,]
 
 
 # Subseting using logical conditions
@@ -376,6 +378,7 @@ is.na(y)
 # Replacing a missing value
 y[is.na(y)==TRUE] <- 1
 
+y[!is.na(y)]
 ```
 <br>
 
