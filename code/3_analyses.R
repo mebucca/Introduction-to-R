@@ -50,7 +50,7 @@ model1 <- lm(eisced ~ age + I(age^2) + factor(gndr_string), data=essdata_sub); m
 
 
 # Update an existing model 
-model2 <- update(model1, . ~ . + factor(gndr_string)*age + factor(gndr_string)*I(age^2)); model2
+model2 <- update(model1, . ~ . + factor(gndr_string)*age); model2
 
 
 # access output 
@@ -86,6 +86,8 @@ covariate.labels=c("Age","Age2","Gender (Male=1)", "Gender*Age","Gender*Age2","I
 
 # create a data grid
 
+
+
 mygrid <- essdata_sub %>% data_grid(age= c(20,30,40,50), gndr_string = c("Female","Male") , .model = model2); mygrid
 
 predictions <- predict(model2,newdata=mygrid )
@@ -96,7 +98,7 @@ pred_df <- cbind(mygrid,predictions) %>% as_tibble(); pred_df
 pred_plot <-pred_df %>% 
 	ggplot(aes(x=age, y=predictions, group= gndr_string, colour=gndr_string)) +
 	geom_line(size=1) +
-	labs(x="age", y="predicted education", title="Eduucational attainment by age and gender") + 
+	labs(x="age", y="predicted education", title="Educational attainment by age and gender") + 
 	scale_color_aaas() +
 	scale_fill_aaas() 
 

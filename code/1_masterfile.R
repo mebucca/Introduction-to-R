@@ -19,12 +19,12 @@ library("stargazer")
 
 
 
+
 folder <- "/Users/Mauricio/Library/Mobile Documents/com~apple~CloudDocs/Teaching/EUI/Introduction to Quantitative Methods/IntroR/"
 
-dircode     <- paste0(folder,"code/") 
+dircode       <- paste0(folder,"code/") 
 dirdata 	  <- paste0(folder,"data/") 
-dirresults  <- paste0(folder,"results/");  dirresults
-
+dirresults    <- paste0(folder,"results/");  dirresults
 
 
 ############################################### Input data ################################################### 
@@ -57,4 +57,4 @@ source("2_exploration.R")
 # Set working directory
 setwd(dircode)
 
-source("2_analyses.R")
+source("3_analyses.R")

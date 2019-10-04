@@ -15,7 +15,7 @@ essdata <- essdata %>% as_tibble(); essdata
 
 # select columns 
 
-essdata %>% select(cntry,gndr,yrbrn,eisced)
+essdata %>% select(cntry,gndr,yrbrn,eisced) 
 
 
 # filter rows that meet logic condition 
@@ -32,7 +32,7 @@ essdata %>% mutate(age = 2019 - yrbrn)
 # of a pipe operates on the results of the chain of instructions on the left side.
 
 
-essdata_sub <- essdata %>% select(cntry,gndr,age,eisced) %>% 
+essdata_sub <- essdata %>% select(cntry,gndr,yrbrn,eisced) %>% 
 	filter(cntry!="AT" & yrbrn>1990, eisced!=55) %>%
 	mutate(age = 2019 - yrbrn) %>%
 	mutate(gndr_string = case_when(gndr == 1 ~ "Male", gndr == 2 ~ "Female"))
@@ -52,7 +52,7 @@ essdata_sub %>% count(gndr_string)
 
 summary_bygroup <- essdata_sub %>% group_by(cntry,gndr_string) %>% 
 summarise(mean_educ = mean(eisced, na.rm=TRUE), mean_age = mean(age, na.rm=TRUE)) %>%
-arrange(cntry)
+arrange(gndr_string)
 
 
 # reshape, from wide to long
