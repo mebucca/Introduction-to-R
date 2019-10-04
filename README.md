@@ -13,3 +13,11 @@ Optionally,
 - Open SublimeText and follow the instructions [here](http://unca-pols.org/2018/01/24/Day_02/) step-by-step. Notice that the procedure is different depending on whether you are a Windows or MacOS user. 
 
 Because of time constraints, I will not be covering how to use R and SublimeText together, but if you are interested we can talk about it after the class. 
+
+
+## Notes
+
+
+- A tutorial with the [basics of the R lenguage](https://mebucca.github.io/IntroR/code/class_1.nb.html)
+
+- A [code template]() covering the essential functions incorporated in the tidyverse packages. The code has the structure of what I consider an effective and tidy workflow. 
