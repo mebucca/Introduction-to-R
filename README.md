@@ -21,4 +21,4 @@ The material for the class consists of two things:
 
 - A tutorial with the [basics of the R lenguage](https://mebucca.github.io/IntroR/code/class_1.nb.html)
 
-- A code template covering the essential functions incorporated in the `tidyverse packages`. The code has the structure of what I consider an effective and tidy workflow. It consists of a [masterfile](code/1_masterfile.R) from which we call different Rscript implementing different parts of the analysis (e.g. [data manipulation](code/2_exploration.R) and [data analysis](code/3_analyses.R)).
+- A code template covering the essential functions incorporated in the [`tidyverse`](https://www.tidyverse.org) packages. The code has the structure of what I consider an effective and tidy workflow. It consists of a [masterfile](code/1_masterfile.R) from which we call different Rscript implementing different parts of the analysis (e.g. [data manipulation](code/2_exploration.R) and [data analysis](code/3_analyses.R)).
