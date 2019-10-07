@@ -18,7 +18,7 @@ library("stargazer")
 ############################################# Setting directories ############################################
 
 
-
+# Change the line below to set your own working directory
 
 folder <- "/Users/Mauricio/Library/Mobile Documents/com~apple~CloudDocs/Teaching/EUI/Introduction to Quantitative Methods/IntroR/"
 
